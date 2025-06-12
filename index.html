@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2196f3">
+  <link rel="manifest" href="manifest.json">
+  <title>Jual Beli Online</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Selamat Datang di Toko Online</h1>
+  <a href="produk.html">Lihat Produk</a>
+  <br><br>
+  <a href="produk.html" download="produk.html" class="download-btn">Unduh Halaman Produk</a>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker terdaftar', reg))
+        .catch(err => console.error('SW gagal', err));
+    }
+  
+    let deferredPrompt;
+    const installBtn = document.createElement('button');
+    installBtn.textContent = 'Pasang Aplikasi di Desktop';
+    installBtn.style.display = 'none';
+    installBtn.style.marginTop = '30px';
+    installBtn.style.padding = '10px 20px';
+    installBtn.style.backgroundColor = '#f57c00';
+    installBtn.style.color = '#fff';
+    installBtn.style.border = 'none';
+    installBtn.style.borderRadius = '5px';
+    installBtn.style.cursor = 'pointer';
+    document.body.appendChild(installBtn);
+  
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'inline-block';
+  
+      installBtn.addEventListener('click', () => {
+        installBtn.style.display = 'none';
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(choiceResult => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+          } else {
+            console.log('User dismissed the install prompt');
+          }
+          deferredPrompt = null;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
