@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#2196f3">
-  <link rel="manifest" href="manifest.json">
-  <title>Jual Beli Online</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8"> <!-- Menentukan karakter encoding -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive di perangkat mobile -->
+  <meta name="theme-color" content="#2196f3"> <!-- Warna tema browser -->
+  <link rel="manifest" href="manifest.json"> <!-- Manifest PWA -->
+  <title>Jual Beli Online</title> <!-- Judul tab browser -->
+  <link rel="stylesheet" href="style.css"> <!-- Menghubungkan file CSS -->
 </head>
 <body>
-  <h1>Selamat Datang di Toko Online</h1>
-  <a href="produk.html">Lihat Produk</a>
+  <h1>Selamat Datang di Toko Online</h1> <!-- Judul halaman -->
+  <a href="produk.html">Lihat Produk</a> <!-- Link ke halaman produk -->
   <br><br>
-  <a href="produk.html" download="produk.html" class="download-btn">Unduh Halaman Produk</a>
+  <a href="produk.html" download="produk.html" class="download-btn">Unduh Halaman Produk</a> <!-- Link untuk mengunduh halaman produk -->
 
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('Service Worker terdaftar', reg))
-        .catch(err => console.error('SW gagal', err));
+    if ('serviceWorker' in navigator) { // Cek dukungan Service Worker
+      navigator.serviceWorker.register('sw.js') // Daftarkan Service Worker
+        .then(reg => console.log('Service Worker terdaftar', reg)) // Jika berhasil
+        .catch(err => console.error('SW gagal', err)); // Jika gagal
     }
   
-    let deferredPrompt;
-    const installBtn = document.createElement('button');
-    installBtn.textContent = 'Pasang Aplikasi di Desktop';
-    installBtn.style.display = 'none';
+    let deferredPrompt; // Menyimpan event install
+    const installBtn = document.createElement('button'); // Buat tombol install
+    installBtn.textContent = 'Pasang Aplikasi di Desktop'; // Teks tombol
+    installBtn.style.display = 'none'; // Sembunyikan tombol awalnya
     installBtn.style.marginTop = '30px';
     installBtn.style.padding = '10px 20px';
     installBtn.style.backgroundColor = '#f57c00';
@@ -32,23 +32,23 @@
     installBtn.style.border = 'none';
     installBtn.style.borderRadius = '5px';
     installBtn.style.cursor = 'pointer';
-    document.body.appendChild(installBtn);
-  
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installBtn.style.display = 'inline-block';
-  
-      installBtn.addEventListener('click', () => {
-        installBtn.style.display = 'none';
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then(choiceResult => {
+    document.body.appendChild(installBtn); // Tambahkan tombol ke halaman
+
+    window.addEventListener('beforeinstallprompt', (e) => { // Event sebelum prompt install muncul
+      e.preventDefault(); // Cegah default
+      deferredPrompt = e; // Simpan event
+      installBtn.style.display = 'inline-block'; // Tampilkan tombol
+
+      installBtn.addEventListener('click', () => { // Klik tombol
+        installBtn.style.display = 'none'; // Sembunyikan tombol lagi
+        deferredPrompt.prompt(); // Tampilkan prompt install
+        deferredPrompt.userChoice.then(choiceResult => { // Tanggapan user
           if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the install prompt');
+            console.log('User accepted the install prompt'); // Diterima
           } else {
-            console.log('User dismissed the install prompt');
+            console.log('User dismissed the install prompt'); // Ditolak
           }
-          deferredPrompt = null;
+          deferredPrompt = null; // Reset
         });
       });
     });
