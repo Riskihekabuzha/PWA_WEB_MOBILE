@@ -1,28 +1,29 @@
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 20px;
+  font-family: Arial, sans-serif; /* Gunakan font Arial */
+  text-align: center; /* Teks rata tengah */
+  padding: 20px; /* Ruang dalam */
 }
 
 h1 {
-  color: #2196f3;
+  color: #2196f3; /* Warna biru untuk judul */
 }
 
 a {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #2196f3;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
+  display: inline-block; /* Link jadi blok */
+  margin-top: 20px; /* Jarak atas */
+  padding: 10px 20px; /* Padding */
+  background-color: #2196f3; /* Warna background */
+  color: white; /* Warna teks */
+  text-decoration: none; /* Hilangkan underline */
+  border-radius: 5px; /* Sudut membulat */
 }
 
 a:hover {
-  background-color: #1976d2;
+  background-color: #1976d2; /* Warna hover */
 }
 
 .download-btn {
-  margin-top: 30px;
-  background-color: #4caf50;
+  margin-top: 30px; /* Jarak atas */
+  background-color: #4caf50; /* Warna hijau */
 }
+
